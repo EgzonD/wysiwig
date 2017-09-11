@@ -1,0 +1,6 @@
+pymongo==2.8
+Flask==0.10.1
+Flask-PyMongo==0.3.0
+Flask-WTF==0.10
+python-slugify==0.0.7
+

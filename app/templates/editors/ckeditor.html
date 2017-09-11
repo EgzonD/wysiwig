@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+<meta charset="utf-8">
+<script src="{{url_for('static', filename='ckeditor_advanced/ckeditor.js')}}"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#editContent').click(function(){
+			var editor = CKEDITOR.instances.editor1;
+			var kontent = editor.getData();
+			$('#editor1').val(kontent);
+			$('.editform').submit();
+		});
+	});
+</script>
+<section id="editormain">
+    <div id="container" align="center">
+    	<h4>WYSIWYG HTML editor: CKEditor</h4>
+    	<div class="col-xs-offset-2 col-xs-8 center">
+	    	<form class="editform" action="{{url_for('home_page.ckeditor')}}" method="post">
+	            <textarea name="editor1" id="editor1" class="col-xs-8" style="width: 80%" rows="10" cols="40">
+	            	{% if text|length > 0 %}
+	                {{text}}
+	            	{% else%}
+	            	 This is your text editor.
+	            	{% endif %}
+	            </textarea><br>
+	            <button type="button" id="editContent" name="editContent" class="col-xs-2 btn btn-danger pull-right">Edit Content</button>
+	            <script>
+	                // Replace the <textarea id="editor1"> with a CKEditor
+	                // instance, using default configuration.
+	                CKEDITOR.replace( 'editor1' );
+	            </script>
+	        </form>
+	    </div>
+    </div>
+</section>
+{% endblock %}
